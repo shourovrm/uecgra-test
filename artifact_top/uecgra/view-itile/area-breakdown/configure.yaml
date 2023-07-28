@@ -1,0 +1,13 @@
+name: area-breakdown
+
+inputs:
+  - signoff.area.rpt
+
+outputs:
+  - area_breakdown.json
+
+commands:
+  - python area_plot.py
+  - cp area_breakdown.json outputs/
+  - python canonicalizer.py
+  - mv tile_area.json area_IE.json

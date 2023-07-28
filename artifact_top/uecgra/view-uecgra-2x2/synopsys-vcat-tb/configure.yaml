@@ -1,0 +1,15 @@
+name: synopsys-vcat-tb
+
+inputs:
+  - run.vcd
+
+outputs:
+  - testbench.v
+
+commands:
+  - vcat inputs/run.vcd -vgen vgen.cfg -timescale 1ns/1ps -o outputs/testbench.v
+  - python setup_fix.py --fix-spec setup_fix_spec.json --clock-time {sim_clock_period} --testbench outputs/testbench.v
+
+parameters:
+  design_name: undefined
+  sim_clock_period: 1.0

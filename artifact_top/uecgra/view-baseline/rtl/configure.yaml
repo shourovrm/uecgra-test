@@ -1,0 +1,9 @@
+name: rtl
+
+commands:
+  - mkdir -p outputs
+  - cat mac/mac.v mul/mul.v accum/accum.v > outputs/design.v
+
+outputs:
+  - design.v
+

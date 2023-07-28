@@ -1,0 +1,112 @@
+#!/usr/bin/env python
+#=========================================================================
+# imul-stream-sim [options]
+#=========================================================================
+#
+#  -h --help           Display this message
+#
+#  --impl              {varlat, withcs, nstage}
+#  --cycle             number of cycles
+#  --trace             Display line tracing
+#
+# Author : Christopher Batten
+# Date   : February 5, 2015
+
+#-------------------------------------------------------------------------
+# Command line processing
+#-------------------------------------------------------------------------
+import argparse, os, sys, timeit
+
+sim_dir = os.path.dirname( os.path.abspath( __file__ ) )
+while sim_dir:
+  if os.path.exists( sim_dir + os.path.sep + ".pymtl-python-path" ):
+    sys.path.insert(0,sim_dir)
+    break
+  sim_dir = os.path.dirname(sim_dir)
+
+sys.path.insert(0, os.path.join(os.path.dirname(sim_dir),"pymtl-v3") )
+
+class ArgumentParserWithCustomError(argparse.ArgumentParser):
+  def error( self, msg = "" ):
+    if ( msg ): print("\n ERROR: %s" % msg)
+    print("")
+    file = open( sys.argv[0] )
+    for ( lineno, line ) in enumerate( file ):
+      if ( line[0] != '#' ): sys.exit(msg != "")
+      if ( (lineno == 2) or (lineno >= 4) ): print( line[1:].rstrip("\n") )
+
+def parse_cmdline():
+  p = ArgumentParserWithCustomError( add_help=False )
+
+  # Standard command line arguments
+
+  p.add_argument( "-h", "--help",    action="store_true" )
+
+  # Additional commane line arguments for the simulator
+
+  p.add_argument( "--impl",  default="varlat", choices=["varlat","withcs","nstage"] )
+  p.add_argument( "--cycle", default=100, type=int )
+  p.add_argument( "--nbits", default=32, type=int )
+  p.add_argument( "--trace", action="store_true"    )
+
+  opts = p.parse_args()
+  if opts.help: p.error()
+  return opts
+
+from pymtl import *
+from IntMulVarLat   import IntMulVarLat
+
+def main():
+  try:
+    import pypyjit
+    pypyjit.set_param("off")
+  except:
+    pass
+
+  opts = parse_cmdline()
+
+  nbits = opts.nbits
+
+  model_impl_dict = {
+    "varlat" : IntMulVarLat,
+  }
+
+  imul = model_impl_dict[ opts.impl ]( nbits )
+  SimRTLPass()( imul )
+
+  # Multiple runs don't make a different since jit trace is shared
+
+  ncycles = opts.cycle
+
+  imul.req.val = Bits1( 1 )
+  imul.resp.rdy = Bits1( 1 )
+
+  try:
+    pypyjit.set_param("default")
+    pypyjit.set_param("trace_limit=100000000")
+  except:
+    pass
+  start_time = timeit.default_timer()
+
+  ts   = 0
+  hi   = int((2**nbits)-1)
+  lo   = int(2**(nbits/9))
+  import math
+  if hi >> 32 < 2:  step = 3
+  else:             step = 10**int(math.ceil(math.log(hi>>32,10)))+7
+
+  dtype = mk_bits( nbits*2 )
+  for cycle in xrange(ncycles):
+    imul.req.msg = dtype( ((hi-ts)<<nbits) | (ts+lo) )
+    ts = (ts+step) & hi
+    imul.tick()
+    if opts.trace:
+      print imul.line_trace()
+  print imul.line_trace()
+
+  end_time = timeit.default_timer()
+
+  print "imul-{}: {:10.0f} cps = {:10d} cycles / {:.5f} sec".format \
+        ( opts.impl, ncycles/(end_time - start_time), ncycles, end_time - start_time )
+
+main()

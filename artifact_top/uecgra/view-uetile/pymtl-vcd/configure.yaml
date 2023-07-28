@@ -1,0 +1,16 @@
+name: pymtl-vcd
+
+outputs:
+  - run.vcd
+  - design.v
+
+commands:
+  - cd src/cgra/test
+  - mkdir -p build_asic_uecgra && cd build_asic_uecgra
+  - rm -rf ./*
+  - echo ""
+  - pytest ../TileStatic_RGALS_test.py::TileStatic_RGALS_Tests::test_stream_mul -xvs --tb=short
+  - echo ""
+  - cd ../../../../outputs
+  - ln -fs ../src/cgra/test/build_asic_uecgra/TileStatic_RGALS_wrapper*.sv design.v
+  - ln -fs ../src/cgra/test/build_asic_uecgra/TileStatic_RGALS_wrapper*.verilator1.vcd run.vcd

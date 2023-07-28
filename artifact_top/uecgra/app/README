@@ -1,0 +1,28 @@
+UE-CGRA Benchmark on TinyRV2 Processor
+-------------------------------------
+
+Author : Peitian Pan
+
+This directory contains the source files and build system of
+the CGRA micro-benchmarks. This repo reuses mcppbs.
+You can build native binary like this:
+
+    make build
+    ../configure
+    make
+
+You can also build binary for TinyRV2 as follows:
+
+    make build-riscv
+    ../configure --host=riscv32-unknown-elf
+    make
+
+The proc-sim top level directory includes an ELF simulator:
+
+    cd $UCGRA_ROOT
+    mkdir build-tinyrv2
+    ../proc-sim/mcore-sim-elf --ncores 1 --single-cycle-mul \
+    --stats <path-to-riscv32-elf-binary>
+
+By default, the simulator translates the processor and dumps
+VCD from Verilator.

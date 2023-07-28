@@ -1,0 +1,9 @@
+name: cadence-innovus-icgra-plugins
+
+outputs:
+  - innovus-plugins
+
+parameters:
+  ncols: 8
+  nrows: 8
+

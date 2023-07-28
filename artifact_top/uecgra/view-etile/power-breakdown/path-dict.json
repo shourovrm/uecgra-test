@@ -1,0 +1,18 @@
+{
+  "mul"   : "power_jsons/stream_mul.json",
+  "add"   : "power_jsons/stream_add.json",
+  "sll"   : "power_jsons/stream_sll.json",
+  "srl"   : "power_jsons/stream_srl.json",
+  "cp0"   : "power_jsons/stream_cp0.json",
+  "and"   : "power_jsons/stream_and.json",
+  "or"    : "power_jsons/stream_or.json",
+  "xor"   : "power_jsons/stream_xor.json",
+  "eq"    : "power_jsons/stream_eq.json",
+  "ne"    : "power_jsons/stream_ne.json",
+  "gt"    : "power_jsons/stream_gt.json",
+  "geq"   : "power_jsons/stream_geq.json",
+  "lt"    : "power_jsons/stream_lt.json",
+  "leq"   : "power_jsons/stream_leq.json",
+  "bps"   : "power_jsons/stream_bps.json",
+  "stall" : "power_jsons/stall.json"
+}

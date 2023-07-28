@@ -1,0 +1,29 @@
+name: synopsys-vcs-gl
+
+inputs:
+  - adk
+  - testbench.v
+  - design.vcs.v
+  - design.sdf
+
+outputs:
+  - run.saif
+
+commands:
+  - vcs -full64 -sverilog -debug_pp \
+        +v2k +vc -notice -V +libext+.v +noportcoerce -diag timescale -diag env \
+        -error=CIRNU -error=CAWM-L \
+        -rad \
+        +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE,noZERO,noUI,noONGS,noVNGS \
+        +warn=noTFIPC \
+        +sdfverbose +overlap +multisource_int_delays \
+        +neg_tchk -negdelay \
+        +sdf=max:tbench_{design_name}.cgra:inputs/design.sdf \
+        +define+ARM_NEG_MODEL \
+        +vcs+initreg+random \
+        inputs/testbench.v -v inputs/design.vcs.v -v inputs/adk/stdcells.v
+  - ./simv +vcs+initreg+0
+  - vcd2saif -input verilog.dump -output outputs/run.saif
+
+parameters:
+  design_name: undefined

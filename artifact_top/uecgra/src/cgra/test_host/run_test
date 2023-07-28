@@ -1,0 +1,11 @@
+rm -rf build_test
+cp StaticCGRA_v2.py ../test/
+cp fir/fir_pro.json /artifact_top/uecgra/src/cgra/test/cfgs/fiir.json 
+cd /artifact_top/uecgra
+rm -rf build_test
+mkdir -p build_test
+cd build_test
+pytest ../src/cgra/test/StaticCGRA_v2.py::StaticCGRA_Trans_Tests::test_fft -vs --tb=short --clock-time=1
+cd ..
+cp -r build_test/ /artifact_top/uecgra/src/cgra/test_host
+

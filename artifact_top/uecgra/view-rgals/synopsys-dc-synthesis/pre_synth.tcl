@@ -1,0 +1,1 @@
+../../../../steps/synopsys-dc-synthesis/pre_synth.tcl

@@ -1,0 +1,17 @@
+name: pymtl-vcd
+
+outputs:
+  - run.vcd
+  - design.v
+
+commands:
+  - cd src/cgra/test
+  - mkdir -p build && cd build
+  - rm -rf ./*
+  - pytest ../StaticCGRA_RGALS_test.py -vs --tb=short -k vvadd --clock-time={sim_clock_period}
+  - cd ../../../../outputs
+  - ln -fs ../src/cgra/test/build/StaticCGRA_RGALS_*.sv design.v
+  - ln -fs ../src/cgra/test/build/StaticCGRA_RGALS_*.vcd run.vcd
+
+parameters:
+  sim_clock_period: 5.00

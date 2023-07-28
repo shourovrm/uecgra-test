@@ -1,0 +1,7 @@
+[
+  "in_q_*",
+  "dpath/node/mul",
+  "dpath/node/alu",
+  "dpath/acc_reg",
+  "dpath/.*mux*"
+]

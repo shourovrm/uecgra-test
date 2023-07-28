@@ -1,0 +1,157 @@
+[
+  {
+    "x"         : 3,
+    "y"         : 0,
+    "op"        : "load",
+    "src_a"     : "N",
+    "src_b"     : "self",
+    "dst"       : [ "E" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 4,
+    "y"         : 0,
+    "op"        : "none",
+    "src_a"     : "self",
+    "src_b"     : "self",
+    "dst"       : [  ],
+    "bps_src0"  : "W",
+    "bps_dst0"  : [ "E" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 5,
+    "y"         : 0,
+    "op"        : "load",
+    "src_a"     : "N",
+    "src_b"     : "self",
+    "dst"       : [ "E" ],
+    "bps_src0"  : "W",
+    "bps_dst0"  : [ "N" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 6,
+    "y"         : 0,
+    "op"        : "none",
+    "src_a"     : "self",
+    "src_b"     : "self",
+    "dst"       : [  ],
+    "bps_src0"  : "W",
+    "bps_dst0"  : [ "N" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 3,
+    "y"         : 1,
+    "op"        : "getelementptr",
+    "src_a"     : "E",
+    "src_b"     : "self",
+    "dst"       : [ "S" ],
+    "bps_src0"  : "N",
+    "bps_dst0"  : [ "E" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 4,
+    "y"         : 1,
+    "op"        : "phi",
+    "src_a"     : "W",
+    "src_b"     : "self",
+    "dst"       : [ "N", "E", "W" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 5,
+    "y"         : 1,
+    "op"        : "getelementptr",
+    "src_a"     : "W",
+    "src_b"     : "self",
+    "dst"       : [ "S" ],
+    "bps_src0"  : "S",
+    "bps_dst0"  : [ "E" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 6,
+    "y"         : 1,
+    "op"        : "fmul",
+    "src_a"     : "S",
+    "src_b"     : "W",
+    "dst"       : [ "N" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 3,
+    "y"         : 2,
+    "op"        : "none",
+    "src_a"     : "self",
+    "src_b"     : "self",
+    "dst"       : [  ],
+    "bps_src0"  : "E",
+    "bps_dst0"  : [ "N" ],
+    "bps_src1"  : "N",
+    "bps_dst1"  : [ "S" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 4,
+    "y"         : 2,
+    "op"        : "add",
+    "src_a"     : "S",
+    "src_b"     : "self",
+    "dst"       : [ "N", "W" ],
+    "bps_src0"  : "N",
+    "bps_dst0"  : [ "E" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 5,
+    "y"         : 2,
+    "op"        : "br",
+    "src_data"  : "E",
+    "src_bool"  : "W",
+    "dst_false"  : [ "N" ],
+    "dst_true" : "self",
+    "bps_src0"  : "N",
+    "bps_dst0"  : [ "E" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 6,
+    "y"         : 2,
+    "op"        : "fadd",
+    "src_a"     : "S",
+    "src_b"     : "W",
+    "dst"       : [ "W" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 3,
+    "y"         : 3,
+    "op"        : "br",
+    "src_data"  : "S",
+    "src_bool"  : "E",
+    "dst_false"  : [ "S" ],
+    "dst_true" : "self",
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 4,
+    "y"         : 3,
+    "op"        : "icmp",
+    "src_a"     : "S",
+    "src_b"     : "self",
+    "dst"       : [ "S", "W" ],
+    "dvfs"      : "nominal"
+  },
+  {
+    "x"         : 5,
+    "y"         : 3,
+    "op"        : "phi",
+    "src_a"     : "S",
+    "src_b"     : "self",
+    "dst"       : [ "S" ],
+    "dvfs"      : "nominal"
+  }
+]

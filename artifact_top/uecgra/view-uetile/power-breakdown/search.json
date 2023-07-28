@@ -1,0 +1,10 @@
+[
+  "in_qs__*",
+  "dpath/node/mul",
+  "dpath/node/alu",
+  "dpath/acc_reg",
+  "dpath/.*mux*",
+  "suppress/suppressors__*",
+  "suppress/unsafe_gen",
+  "clk_switcher"
+]

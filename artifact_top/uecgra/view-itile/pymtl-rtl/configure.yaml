@@ -1,0 +1,12 @@
+name: pymtl-rtl
+
+outputs:
+  - design.v
+
+commands:
+  - cd src/cgra/test
+  - mkdir -p build && cd build
+  - rm -rf ./*
+  - pytest ../TileStatic_IE_test.py -svx
+  - cd ../../../../outputs
+  - ln -fs ../src/cgra/test/build/TileStatic__1e6a4842d439bc99.sv design.v

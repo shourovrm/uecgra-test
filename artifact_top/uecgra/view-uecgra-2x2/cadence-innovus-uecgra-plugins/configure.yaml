@@ -1,0 +1,9 @@
+name: cadence-innovus-uecgra-plugins
+
+outputs:
+  - innovus-plugins
+
+parameters:
+  ncols: 8
+  nrows: 8
+

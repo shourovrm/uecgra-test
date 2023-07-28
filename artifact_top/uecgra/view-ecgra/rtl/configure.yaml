@@ -1,0 +1,6 @@
+name: rtl
+
+outputs:
+  - design.v
+  - run.vcd
+

@@ -1,0 +1,20 @@
+name: synopsys-ptpx-gl
+
+inputs:
+  - adk
+  - design.vcs.v
+  - design.spef.gz
+  - design.pt.sdc
+  - run.saif
+  - design.namemap
+
+outputs:
+  - reports
+
+commands:
+  - pt_shell -file pt_px.tcl
+  - cp -aL reports outputs/
+
+parameters:
+  sim_clock_period: 1.0
+  design_name: undefined

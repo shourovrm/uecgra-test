@@ -1,0 +1,1 @@
+../../../../steps/synopsys-dc-synthesis/dump-parameters.py

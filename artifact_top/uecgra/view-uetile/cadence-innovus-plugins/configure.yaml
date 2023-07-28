@@ -1,0 +1,4 @@
+name: cadence-innovus-plugins
+
+outputs:
+  - innovus-plugins

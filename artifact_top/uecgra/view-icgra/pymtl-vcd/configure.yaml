@@ -1,0 +1,14 @@
+name: pymtl-vcd
+
+outputs:
+  - run.vcd
+  - design.v
+
+commands:
+  - cd src/cgra/test
+  - mkdir -p build && cd build
+  - rm -rf ./*
+  - pytest ../StaticCGRA_IE_test.py::StaticCGRA_IE_Trans_Tests::test_vvdouble_8x8 -vx
+  - cd ../../../../outputs
+  - ln -fs ../src/cgra/test/build/StaticCGRA*.sv design.v
+  - ln -fs ../src/cgra/test/build/StaticCGRA*.vcd run.vcd

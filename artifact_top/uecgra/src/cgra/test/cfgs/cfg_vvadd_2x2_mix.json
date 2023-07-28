@@ -1,0 +1,38 @@
+[
+  {
+    "x"     : 0,
+    "y"     : 0,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 1,
+    "y"     : 0,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "N" ],
+    "dvfs"  : "fast"
+  },
+  {
+    "x"     : 0,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "slow"
+  },
+  {
+    "x"     : 1,
+    "y"     : 1,
+    "op"    : "add",
+    "src_a" : "W",
+    "src_b" : "S",
+    "dst"   : [ "E" ],
+    "dvfs"  : "slow"
+  }
+]

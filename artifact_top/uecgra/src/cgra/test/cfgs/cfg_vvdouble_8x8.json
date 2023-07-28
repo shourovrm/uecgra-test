@@ -1,0 +1,92 @@
+[
+  {
+    "x"     : 0,
+    "y"     : 0,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "N", "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 1,
+    "y"     : 0,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "N" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 0,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "S",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 1,
+    "y"     : 1,
+    "op"    : "add",
+    "src_a" : "W",
+    "src_b" : "S",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 2,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 3,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 4,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 5,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 6,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  },
+  {
+    "x"     : 7,
+    "y"     : 1,
+    "op"    : "cp0",
+    "src_a" : "W",
+    "src_b" : "self",
+    "dst"   : [ "E" ],
+    "dvfs"  : "nominal"
+  }
+]

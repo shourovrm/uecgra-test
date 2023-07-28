@@ -1,0 +1,17 @@
+name: rtl
+
+
+commands:
+  - mkdir -p outputs
+  - cat mac-rgals/mac-rgals.v
+        mac-rgals/mul-wrapper.v
+        mac-rgals/accum-wrapper.v
+        mul/mul.v
+        accum/accum.v
+        clock/ClockDivider.v
+        clock/ClockSwitcher.v
+        fifos/BisynchronousNormalQueue.v > outputs/design.v
+
+outputs:
+  - design.v
+

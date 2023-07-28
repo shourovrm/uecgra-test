@@ -1,0 +1,13 @@
+name: synopsys-vcat-tb
+
+inputs:
+  - run.vcd
+
+outputs:
+  - testbench.v
+
+commands:
+  - vcat inputs/run.vcd -vgen vgen.cfg -timescale 1ns/1ps -o outputs/testbench.v
+
+parameters:
+  design_name: undefined

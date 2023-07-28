@@ -1,0 +1,30 @@
+name: synopsys-vcs-gl
+
+inputs:
+  - adk
+  - testbench.v
+  - design.vcs.v
+  - design.sdf
+
+outputs:
+  - run.saif
+
+commands:
+  - vcs -full64 -sverilog -debug_pp \
+        +v2k +vc -notice -V +libext+.v +noportcoerce -diag timescale -diag env \
+        -error=CIRNU -error=CAWM-L \
+        -rad \
+        +notimingcheck \
+        +lint=all,noVCDE,noTFIPC,noIWU,noOUDPE,noZERO,noUI,noONGS,noVNGS \
+        +warn=noTFIPC \
+        +sdfverbose +overlap +multisource_int_delays \
+        +neg_tchk -negdelay \
+        +sdf=max:tbench_{design_name}.tile:inputs/design.sdf \
+        +define+ARM_NEG_MODEL \
+        +vcs+initreg+random \
+        inputs/testbench.v -v inputs/design.vcs.v -v inputs/adk/stdcells.v
+  - ./simv
+  - vcd2saif -input verilog.dump -output outputs/run.saif
+
+parameters:
+  design_name: TileStatic_RGALS__4860350d42859600

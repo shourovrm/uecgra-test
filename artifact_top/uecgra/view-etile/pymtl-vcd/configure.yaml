@@ -1,0 +1,14 @@
+name: pymtl-vcd
+
+outputs:
+  - run.vcd
+  - design.v
+
+commands:
+  - cd src/cgra/test
+  - mkdir -p build && cd build
+  - rm -rf ./*
+  - pytest ../TileStatic_test.py::TileStaticV_Tests::test_stream_mul -v --tb=short
+  - cd ../../../../outputs
+  - ln -fs ../src/cgra/test/build/*.sv design.v
+  - ln -fs ../src/cgra/test/build/*.vcd run.vcd

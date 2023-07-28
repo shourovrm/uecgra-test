@@ -1,0 +1,11 @@
+name: power-breakdown
+
+inputs:
+  - reports
+
+outputs:
+  - power_breakdown.json
+
+commands:
+  - python power_breakdown.py -v --report inputs/reports/*.hier.rpt --search-dict search.json --dump-json power_breakdown.json --plot power_breakdown.pdf
+  - cp power_breakdown.json outputs/
